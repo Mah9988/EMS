@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+        body{
+            margin-top:20px;
+            background:#f8f8f8  
+        }
+        .custom-control-input {
+            z-index: 1;
+        }
+        .alert-danger{
+            padding: 15px;
+            border-radius: 12px;
+        }
+    </style>
+        <title>EMS</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row flex-lg-nowrap">
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="e-profile">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-auto
+                                                mb-3">
+                                                <div class="mx-auto"
+                                                    style="width: 140px;">
+                                                    <div class="d-flex
+                                                        justify-content-center
+                                                        align-items-center
+                                                        rounded" style="height:
+                                                        140px; background-color:
+                                                        rgb(233, 236, 239);">
+                                                        <span style="color:
+                                                            rgb(166, 168, 170);
+                                                            font: bold 8pt
+                                                            Arial;">140x140</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col d-flex flex-column
+                                                flex-sm-row
+                                                justify-content-between mb-3">
+                                                <div class="text-center
+                                                    text-sm-left mb-2 mb-sm-0">
+                                                    <h4 class="pt-sm-2 pb-1 mb-0
+                                                        text-nowrap">Name</h4>
+                                                    <p class="mb-0">ID</p>
+                                                    <div class="mt-2">
+
+                                                        <button class="btn
+                                                            btn-primary"
+                                                            type="button" onclick="chooseFile()">
+                                                            <i class="fa fa-fw
+                                                                fa-camera"></i>
+                                                            <span>Change Photo</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a href=""
+                                                    class="active nav-link">Edit-Profile</a></li>
+                                        </ul>
+                                        <div class="tab-content pt-3">
+                                            <div class="tab-pane active">
+                                                <form class="form" action="/editProfile" method="POST">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col">
+                                                                    <div
+                                                                        class="form-group">
+                                                                        <label>Full
+                                                                            Name</label>
+                                                                        <input
+                                                                            class="form-control"
+                                                                            type="text"
+                                                                            name="name"
+                                                                            placeholder="4 syllables">
+                                                                    </div>
+                                                                    <% let nameError = validiationErrors.find(err => err.param === 'name') %> 
+                                                                    <% if(nameError) { %>
+                                                                        <p class="aletr alert-danger">
+                                                                            <%= nameError.msg %> 
+                                                                        </p>
+                                                                    <% } %>  
+                                                                </div>
+                                                                <div
+                                                                    class="col">
+                                                                    <div
+                                                                        class="form-group">
+                                                                        <label>Phone-Number</label>
+                                                                        <input
+                                                                            class="form-control"
+                                                                            type="text"
+                                                                            name="PhoneNumber"
+                                                                            value="">
+                                                                    </div>
+                                                                    <% let phoneError = validiationErrors.find(err => err.param === 'PhoneNumber') %> 
+                                                                    <% if(phoneError) { %>
+                                                                        <p class="aletr alert-danger">
+                                                                            <%= phoneError.msg %> 
+                                                                        </p>
+                                                                    <% } %>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col">
+                                                                    <div
+                                                                        class="form-group">
+                                                                        <label>Email</label>
+                                                                        <input
+                                                                            class="form-control"
+                                                                            type="text"
+                                                                            name="email"
+                                                                            placeholder="user@example.com">
+                                                                    </div>
+                                                                    <% let emailError = validiationErrors.find(err => err.param === 'email') %> 
+                                                                    <% if(emailError) { %>
+                                                                        <p class="aletr alert-danger">
+                                                                            <%= emailError.msg %> 
+                                                                        </p>
+                                                                    <% } %>
+                                                                </div>
+
+                                                                <div
+                                                                    class="row">
+                                                                    <div
+                                                                        class="col">
+                                                                        <div
+                                                                            class="form-group">
+                                                                            <label>Birth Date</label>
+                                                                            <input
+                                                                                class="form-control"
+                                                                                type="date"
+                                                                                name="birthDate">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col
+                                                                    mb-3">
+                                                                    <div
+                                                                        class="form-group">
+                                                                       
+                                                                        <label>My Address</label>
+                                                                        <textarea
+                                                                            class="form-control"
+                                                                            name="address"
+                                                                            rows="5"
+                                                                            placeholder="My Address: 1- City 
+                     2- Street
+                                                                            "></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12
+                                                            col-sm-6 mb-3">
+                                                            <div class="mb-2"><b>Change
+                                                                    Password</b></div>
+                                                            <div class="row">
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col">
+                                                                    <div
+                                                                        class="form-group">
+                                                                        <label>New
+                                                                            Password</label>
+                                                                        <input
+                                                                            class="form-control"
+                                                                            type="password"
+                                                                            name="password"
+                                                                            placeholder="••••••">
+                                                                    </div>
+                                                                    <% let passError = validiationErrors.find(err => err.param === 'password') %> 
+                                                                    <% if(passError) { %>
+                                                                        <p class="aletr alert-danger">
+                                                                            <%= passError.msg %> 
+                                                                        </p>
+                                                                    <% } %>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="row">
+                                                                <div
+                                                                    class="col">
+                                                                    <div
+                                                                        class="form-group">
+                                                                        <label>Confirm
+                                                                            <span
+                                                                                class="d-none
+                                                                                d-xl-inline">Password</span></label>
+                                                                        <input
+                                                                            class="form-control"
+                                                                            type="password"
+                                                                            name="password"
+                                                                            placeholder="••••••"></div>
+                                                                </div>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="col-12
+                                                            col-sm-5 offset-sm-1
+                                                            mb-3">
+
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col">
+                                                                    <label>Gender
+                                                                    </label>
+                                                                    <div
+                                                                        class="custom-controls-stacked
+                                                                        px-2">
+                                                                        <div
+                                                                            class="custom-control
+                                                                            custom-checkbox">
+                                                                            <input
+                                                                                name="gender"
+                                                                                type="checkbox"
+                                                                                class="custom-control-input"
+                                                                                id="notifications-blog"
+                                                                                value="Male">
+                                                                            <label
+                                                                                class="custom-control-label"
+                                                                                for="Male">Male</label>
+                                                                        </div>
+                                                                        <div
+                                                                            class="custom-control
+                                                                            custom-checkbox">
+                                                                            <input
+                                                                                name="gender"
+                                                                                type="checkbox"
+                                                                                class="custom-control-input"
+                                                                                id="notifications-news"
+                                                                                value="Female">
+                                                                            <label
+                                                                                class="custom-control-label"
+                                                                                for="Female">Female</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <% for(let error of validiationErrors) {%>
+                                                                
+                                                            <% } %> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex
+                                                            justify-content-end">
+                                                            <button class="btn
+                                                                btn-primary"
+                                                                name="editProfileBtn" value="<%=[idForEdit,typeForEdit]%>"
+                                                            
+                                                                type="submit">Save
+                                                                Changes</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div style="height:0px;overflow:hidden">
+            <input type="file" id="fileInput" name="fileInput" />
+         </div>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            function chooseFile() {
+                document.getElementById("fileInput").click();
+            }
+        </script>
+    </body>
+</html>

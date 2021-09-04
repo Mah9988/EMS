@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/sign&login.css">
+    <title>EMS</title>
+</head>
+
+<body>
+    <!--Start navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="/home"><img src="../images/logo.png" width="70px" height="80x"></a>
+        <ul class="navbar-nav ml-auto getStarted">
+            <li class="nav-item">
+                <a href="/home/login">Login</a>                 
+        </ul>
+    </nav>
+    <!--End navbar-->
+    
+    <!--Start Login-->
+    <% if(authError1){ %>
+        <p class="alert alert-success" style="margin: 10px auto;width: 350px;text-align: center;font-size: 20px;">Your Request was submitted </p>
+    <% } %>  
+    <% let emailError = validiationErrors.find(err => err.param === 'workEmail') %> 
+        <% if(emailError) { %>
+        <p class="aletr alert-danger" style="margin: 10px auto;width: 350px;text-align: center;font-size: 20px;padding: 30px 0;border-radius: 15px;">
+        <%= emailError.msg %> 
+        </p>
+        <% } %>
+    <section class="login">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 left grey-box">
+                    <h3 style="text-align: center;"> Welcome to EMS </br> Request a Demo</h3>
+                    <div class="white-box">
+                        <p >Fill out the below form and we will get in touch with you.</p>
+                        <form action="/signup" method="POST">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                            <input class="form-control" name="name" placeholder="Name" required="" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                            <input class="form-control" name="companyName" placeholder="Company Name" required="" type="text">
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                <input class="form-control" name="workEmail" placeholder="Work Email" required="" type="email">
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" name="phoneNumber" placeholder="Phone Number" required="" type="text">
+                                    </div>
+                                    </div>
+                                    <div class="submit-btn btn btn-primary btn-lg btn-block margin-top-mt" id="Send-SignUp" >
+
+                                        <input type="submit" name="" id="" value="Send" style="background: none;border: none;color: #fff;width:100% ;">
+                                        </div>
+                                    </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 right">
+                    <p>We are happy to do business with you and wish you an excellent experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End login-->
+
+    <% for (let error of validiationErrors){ %> 
+    <% } %> 
+
+
+</body>
+
+</html>

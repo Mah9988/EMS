@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EMS</title>
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet">
+        <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/cs-skin-elastic.css">
+        <link rel="stylesheet"
+            href="../css/lib/datatable/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../css/all.min.css">
+        <link rel="stylesheet" href="../css/fontawesome.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff!important;
+        }
+        
+        .traffic-chart {
+            min-height: 335px;
+        }
+        
+        #flotPie1 {
+            height: 150px;
+        }
+        
+        #flotPie1 td {
+            padding: 3px;
+        }
+        
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        #flotLine5 {
+            height: 105px;
+        }
+        
+        #flotBarChart {
+            height: 150px;
+        }
+        
+        #cellPaiChart {
+            height: 160px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <!-- Left Panel -->
+        <aside id="left-panel" class="left-panel">
+            <nav class="navbar navbar-expand-sm navbar-default">
+                <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/manager"><i class="menu-icon fa
+                                    fa-laptop"></i>Dashboard
+                            </a>
+                        </li>
+                        <!-- /.menu-title -->
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fa
+                                    fa-users"></i>Attendance</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><a href="/manager/attendance_log_manager">Attendance
+                                        Log</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fa
+                                    fa-tasks"></i>To Do</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><a href="/manager/All_Task_Manager">All Tasks</a></li>
+                                <li><a href="/manager/Add_Task_Manager">Add Tasks</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fas
+                                    fa-sign-out-alt"></i>Leave</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><a href="/manager/All_Request_Leave_Manager">All
+                                        Requests</a></li>
+                            </ul>
+                            <li class="menu-item-has-children dropdown">
+                                <a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"> <i class="menu-icon
+                                        far fa-building"></i>Organization</a>
+                                <ul class="sub-menu children dropdown-menu">
+                                    <li><a href="/manager/EMP_Manager">My
+                                            Employees</a></li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </aside>
+        <!-- /#left-panel -->
+
+        <!-- /#left-panel -->
+        <!-- Right Panel -->
+        <div id="right-panel" class="right-panel">
+            <!-- Header-->
+            <header id="header" class="header">
+                <div class="top-left">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="./"><img
+                                src="../images/logo1.jpg" alt="Logo"></a>
+                        <a id="menuToggle" class="menutoggle"><i class="fa
+                                fa-bars"></i></a>
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="header-menu">
+                        <div class="header-left" style="padding-top: 10px;">
+                            <h5 style="font-weight: bold;"><%=nameManager%></h5>
+                            <p><%=idManager%></p>
+                        </div>
+
+                        <div class="user-area dropdown float-right">
+                            <a href="#" class="dropdown-toggle active"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="user-avatar rounded-circle"
+                                    src="../images/admin.jpg" alt="User Avatar">
+                            </a>
+
+                            <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="/My_Profile"><i class="fa fa-
+                                        user"></i>My Profile</a>
+                                        <form action="/logout" method="POST">
+                                            <button type="submit" style="border: none;background: none;font-size: 15px;padding-left: 12px;">
+                                                <i class="fa fa-power -off"></i>Logout
+                                            </button>
+                                        </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            <!-- /#header -->
+            <!-- breadcrumbs -->
+            <div class="breadcrumbs">
+                <div class="breadcrumbs-inner">
+                    <div class="row m-0">
+                        <div class="col-sm-4">
+                            <div class="page-header float-left">
+                                <div class="page-title">
+                                    <h1>Add Task</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="page-header float-right">
+                                <div class="page-title">
+                                    <ol class="breadcrumb text-right">
+                                        <li><a href="/manager">Dashboard</a></li>
+                                        <li class="active">Add Task</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#breadcrumbs -->
+            <!-- Content -->
+            <div class="content">
+                <div class="animated fadeIn">
+                    
+                    <!-- Orders -->
+                    <div class="orders">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="box-title">Add Task </h4>
+                                    </div>
+                                    <div class="card-body--">
+                                        <div class="table-stats ov-h">
+                                        <form action="/manager/Add_Task_Manager" method="POST" enctype="multipart/form-data">
+                                            <table border="1"
+                                                class="Req_leave_Table">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th><span>
+                                                        <input type="text" name="empId" id="" class="form-control" style="width: 30%;" >
+                                                    </span></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Task Title</th>
+                                                    <th><span>
+                                                        <input type="text" name="taskTitle" id="" class="form-control" style="width: 30%;">
+                                                    </span></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Details</th>
+                                                    <th><span><textarea name="details" id="" cols="50" rows="5" class="form-control" style="width: 30%;"></textarea></span></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Due Date / Time</th>
+                                                    <th><span><input type="date"
+                                                                id="Date-leave-input"
+                                                                name="dueDate"
+                                                                style="padding:
+                                                                20px;border:
+                                                                none;font-size:
+                                                                20px;"></span>
+                                                                <span><input type="time"
+                                                                    id="time-leave"
+                                                                    name="dueTime"
+                                                                    style="padding:
+                                                                    20px;border:
+                                                                    none;background-color:
+                                                                    inherit;font-size:
+                                                                    20px;"></span>
+                                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Upload File</th>
+                                                    <td>
+                                                        <div class='file-input'>
+                                                            <input type='file' name="taskFile">
+                                                            <span class='button'>Choose File</span>
+                                                            <span class='label' data-js-label>No file selected</label>
+                                                        </div>
+                                                    <!-- <label class="file">
+                                                        <input type="file" id="file" aria-label="File browser example" name="taskFile">
+                                                        <span class="file-custom"></span>
+                                                    </label> -->
+                                                    </td>   
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <button type="submit" name="SendTaskManager" value="true" class="btn
+                                                        btn-primary button-optinal2" data-dismiss="modal">Send</button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-Leave -->
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Start all task  -->
+                    <div class="orders">
+                        <div class="row">
+                            <div class="col col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="box-title">Tasks </h4>
+                                    </div>
+                                    <div class="card-body--">
+                                        <div class="table-stats order-table
+                                            ov-h">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="serial">#</th>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Type</th>
+                                                        <th>Task Title</th>
+                                                        <th>Details</th>
+                                                        <th>Due Date</th>
+                                                        <th>File</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%let counter = 1%>
+                                                    <%for(let tas of task){%>
+                                                    <tr>
+                                                    <%if(id===tas.managerId){%> 
+                                                        <% if(tas.Status === 'null') {%>    
+                                                    <td><%=counter%>.</td>
+                                                    <td><%=tas.empId%></td>
+                                                    <td><%= tas.name %> </td>
+                                                    <td><%= tas.typeEMP %> </td>
+                                                    <td><%=tas.taskTitle%></td>
+                                                    <td><%=tas.details%></td>
+                                                    <td><%=tas.dueDate%> / <%=tas.dueTime%></td>
+                                                    <%if(tas.file == "null"){%>
+                                                    <td>No File Uploaded</td>  
+                                                    <%}%>
+                                                    <%if(tas.file !="null"){%>
+                                                    <% let splitTask = (tas.file).split('----')%> 
+                                                    <td><a href="../files/<%=tas.file%>" download><i class="fas fa-download" style="margin-right: 8px;"></i><%=splitTask[1]%></a></td>
+                                                    <%}%>
+                                                    <td><form action="/manager/Add_Task_Manager" method="POST" enctype="multipart/form-data">
+                                                        <td><button type="submit" style="background: none; border: none;" class="font-trash" name="deleteTaskManagerBtn" value="<%= tas._id %>"><i class="fas fa-trash-alt"></i></button></td>
+                                                        </form></td>
+                                                        
+                                                    <%counter = counter+1%> 
+                                                    <% } %> 
+                                                    <%}%>
+                                                    </tr>
+                                                    <%}%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-stats -->
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                    </div>
+            </div>
+                    <!-- .animated -->
+                </div>
+                <!-- /.content -->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- /#right-panel -->
+        <!-- Scripts -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+        <script src="../js/dashboard.js"></script>
+        <script src="../js/main.js"></script>
+        <script>
+                var inputs = document.querySelectorAll('.file-input')
+                for (var i = 0, len = inputs.length; i < len; i++) {
+                customInput(inputs[i])
+                }
+
+                function customInput (el) {
+                const fileInput = el.querySelector('[type="file"]')
+                const label = el.querySelector('[data-js-label]')
+
+                fileInput.onchange =
+                fileInput.onmouseout = function () {
+                    if (!fileInput.value) return
+                    
+                    var value = fileInput.value.replace(/^.*[\\\/]/, '')
+                    el.className += ' -chosen'
+                    label.innerText = value
+                }
+                }
+        </script>
+    </body>
+
+</html>

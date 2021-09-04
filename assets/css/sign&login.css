@@ -1,0 +1,227 @@
+body {
+    font-family: 'Times New Roman';
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+/* navbar */
+
+.navbar {
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 10%), 0 0px 0 0 rgb(0 0 0 / 19%) !important;
+}
+
+.bg-light {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: normal !important;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #333 !important;
+}
+
+.navbar .getStarted a {
+    color: #333 !important;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    margin-right: 15px;
+    border-bottom: 3px solid #49BFAC;
+}
+
+.navbar .getStarted a:hover {
+    text-decoration: none;
+}
+
+.navbar .getStarted button {
+    width: 160px;
+    height: 42px;
+    background-color: #49BFAC;
+    border-color: #49BFAC;
+    border-radius: 0;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    outline: none;
+}
+
+
+/* login start */
+
+.login{
+    height: 670px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login .grey-box{
+    background-color: #333;
+    padding: 22px;
+    border-radius: 1px;
+    color: #fff;
+}
+.login .grey-box h3{
+    text-align: center;
+    padding-top: 25px;
+    color: #fff;
+    margin-top: 0 !important;
+}
+.login .grey-box .white-box{
+    background-color: #ffffff;
+    margin: 8% 10%;
+    padding: 30px;
+    border-radius: 1px;
+    color: #000000;
+}
+.login .grey-box .white-box p{
+
+    line-height: 1.6;
+    font-size: 17px;
+}
+.form-group {
+    margin-bottom: 0;
+    padding: 18px 0;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.form-group input{
+    padding: 25px
+}
+.submit-btn{
+    background-color: #49BFAC;
+    border: #49BFAC;
+}
+.submit-btn:hover{
+    background-color: #49BFAC;
+}
+.login .right{
+    background-image: url('../images/sign-right.jpg');
+    background-size: cover;
+    height: 748px;
+    background-position: center;
+}
+.login .right p{
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    padding-bottom: 60px;
+    font-size: 30px;
+    color: #fff;
+}
+@media only screen and (max-width: 767px){
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl{
+        padding: 0 !important;
+    }
+}
+
+/* login section start */
+.green-section {
+    padding: 10px;
+    background-color: #49BFAC;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    height: 650px;
+}
+.green-section h2{
+    margin-top: 50px;
+    font-size: 35px;
+    font-weight: bold;
+}
+.green-section p {
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+.white-text {
+    color: #fff !important;
+}
+.text-center {
+    text-align: center;
+}
+.margin-top-xl {
+    margin-top: 65px;
+}
+.green-section .cont{
+    width: 550px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+.green-section .form-group{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.form-horizontal .form-group {
+    margin-bottom: 0;
+    padding: 12px 0;
+}
+.green-section .login-submit{
+    margin-left: 30px !important;
+}
+.btn-primary-white {
+    border: 2px #fff solid;
+    color: #49BFAC;
+    background-color: #fff;
+}
+.pull-left {
+    float: left !important;
+}
+.form-horizontal .am-checkbox, .form-horizontal .am-radio {
+    padding: 7px 0;
+    min-height: auto;
+}
+#remember {
+    display: block;
+    line-height: 22px;
+    margin: 0;
+    padding: 7px 0;
+    margin-left: 35px;
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    margin-right: 8px;
+}
+label {
+    font-weight: 400;
+    font-size: 17px;
+    margin-bottom: 8px;
+    max-width: 100%;
+    display: inline-block;
+}
+.green-section a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 15px;
+}
+.login-submit{
+    margin-bottom: 35px;
+}
+.alert {
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+.alert-danger{
+    background-color: rgb(255, 210, 218);
+    border: rgb(255, 210, 218);
+    font-size: 18px !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 20px;
+    color: #000000;
+}

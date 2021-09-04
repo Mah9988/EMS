@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/all.min.css">
+        <link rel="stylesheet" href="./css/fontawesome.min.css">
+        <link rel="stylesheet" href="./css/admin_page.css">
+        <title>EMS</title>
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <!--Start navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="/adminTable"><img
+                    src="./images/logo.png"
+                    width="70px"
+                    height="80x"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+                <div class="logout">
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="button-logout">Logout</button>
+                    </form>
+                </div>
+            </div>
+
+        </nav>
+        <!--End navbar-->
+
+        <!-- Start admin table -->
+        <div class="row">
+            <div class="col-md-4">
+        <table class="styled-table">
+            <thead>
+                <tr><th colspan="8" style="text-align: center;">Create Manager </th></tr>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Password</th>
+                    <form action="/adminTable" method="POST">
+                    <th><span style="float: right;"><button type="submit" class="button-optinal button-optinal-create btn "  name="CreateManager" value="true" >Create Manager</button></span></th>
+                    </form>
+                </tr>
+            </thead>
+            <tbody>
+                <% let counte = 1 %> 
+                <% for(let use of user){ %> 
+                    <% if(use.type == "manager") {%>
+                        <% if(use.email == null) {%> 
+                        <tr>
+                            <td><%= counte++ %> .</td>
+                            <td><%= use.ID %> </td>
+                            <td><%= use.password %> </td>
+                            <form action="/adminTable" method="POST">
+                            <td><span style="float: right;"><button type="submit" style="background: none; border: none;" class="font-trash" name="deleteCreateManagerBtn" value="<%=use._id%>" ><i class="fas fa-trash-alt"></i></button></span></td>
+                            </form>
+                        </tr>
+                        <% } %> 
+                    <% } %>  
+                <% } %> 
+            </tbody>
+        </table>
+        </div>
+        <div class="col-md-8" style="padding-right: 0px;">
+            <table class="styled-table">
+                <thead>
+                    <tr><th colspan="8" style="text-align: center;">Companies</th></tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>no. EMP</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% let c=1 %>
+                    <%for(let us of user) {%>
+                    <%if(us.type == "manager"){%>
+                    <%if(us.email != null){%>  
+                        <form action="/adminTable" method="POST">
+                        <tr>
+                            <td><%= c++ %>.</td>
+                            <td><%= us.name %></td>
+                            <td><%= us.type %> </td>
+                            <td><%= us.email %> </td>
+                            <td><%= us.phone%> </td>
+                            <td >
+                                <input type="number" name="inputCount" id="" min="1" style="width: 50%;">
+                            </td>
+                            <td>
+                                <button type="submit"
+                                name="editNumber"
+                                style="border: 2px solid #49BFAC;
+                                background-color: #49BFAC;
+                                color: #fff;
+                                padding: 5px 30px;" 
+                                value="<%= us._id %>">Edit</button>
+                            </td>
+                            <td><i class="fas fa-angle-down" onclick="btnSlide('<%= us._id %>')" ></i></td>
+                            <thead class="slideTable slideTable-<%= us._id %>" >
+                                <tr>
+                                    <td>#</td>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Email</td>
+                                    <td>Phone</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <% let newCount = 1 %> 
+                            <% for(let use1 of user) {%>
+                                <% if(us.ID == use1.managerId) {%> 
+                                    <% if(use1.email != null) {%> 
+                                <tr  class="slideTable slideTable-<%= us._id %>">
+                                    <td><%= newCount++ %>.</td>
+                                    <td><%= use1.name %> </td>
+                                    <td><%= use1.type %> </td>
+                                    <td><%= use1.email %> </td>
+                                    <td><%= use1.phone %> </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                
+                            <% } %> 
+                                <% } %> 
+                            <% } %> 
+                    </tr> 
+                </form>
+                    <%}%>
+                    <%}%>
+                    <%}%> 
+                </tbody>
+            </table>
+            </div>
+    </div>
+        <!-- End admin table -->
+        <table class="styled-table" style="margin-top: 100px;">
+            <thead>
+                <tr><th colspan="8" style="text-align: center;">Request Company</th></tr>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Company Name / Type Emp</th>
+                    <th>Work Email  </th>
+                    <th>Phone Number</th>
+                    <th>No. EMP</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <% let count = 1 %> 
+                <% for (let comp of companies){ %>
+                    
+                    <tr>
+                    <td><%= count %>. </td>
+                    <td><%= comp.name %> </td>
+                    <td><%= comp.companyName %> </td>
+                    <td><%= comp.workEmail %> </td>
+                    <td><%= comp.phoneNumber %> </td>
+                    <td>50</td>
+                    <td>
+                        <form action="/adminTable" method="POST">
+                        <button class="fa
+                        fa-times"type="submit" style="background: none;border: none;" name="deleteRequest" value="<%=comp._id %>">
+                        </button>
+                        </form>
+                    </td>
+                    <% count = count + 1 %> 
+                    </tr>
+                <% } %> 
+                
+            </tbody>
+        </table>
+
+        <table class="styled-table" style="margin-top: 100px;">
+            <thead>
+                <tr><th colspan="8" style="text-align: center;">Schedule Meeting</th></tr>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let counter = 1 %>
+                <% for(let meet of scheduleMeeting){ %>
+                    
+                    <tr>
+                        <td><%= counter %> </td>
+                        <td><%= meet.Name %> </td>
+                        <td><%= meet.companyName %> </td>
+                        <td><%= meet.Email %> </td>
+                        <td><%= meet.phoneNumber %> </td>
+                        <td><%= meet.Date %> </td>
+                        <td><%= meet.Time %> </td>
+                        <td><form action="" method="POST">
+                            <button class="fa fa-times"
+                            style="border: none;background: none;" value="<%= meet._id %>" name="deleteScheduleMeeting">
+
+                            </button>
+                        </form></td>
+                    </tr> 
+                    <% counter=counter+1 %> 
+                <% } %> 
+            </tbody>
+        </table>
+        <!-- Modal Meeting -->
+        <div class="modal-admin-table">
+            <div class="modal fade" id="modal" tabindex="-1"
+                role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"
+                                id="exampleModalLabel">Edit Company</h5>
+                            <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/adminTable" method="POST">
+                            <div class="modal-body">
+                                <label for="companyName">Company Name</label>
+                                <input type="text" class="form-control"
+                                    name="companyName">
+                                <label for="workEmail">Work Email</label>
+                                <input type="email" class="form-control"
+                                    name="workEmail">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="text" class="form-control"
+                                    name="phoneNumber">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn
+                                    btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn
+                                    btn-primary" name="saveUpdateButtonRequest" id="saveUpdateButtonRequest">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Meeting -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+                function btnSlide(id){
+                    $('.slideTable-'+id).slideToggle()
+                }
+                function updateButtonRequest(el){ 
+            jQuery('#saveUpdateButtonRequest').val(jQuery(el).val())
+        }
+        </script>
+    </body>
+</html>

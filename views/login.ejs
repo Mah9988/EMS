@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/sign&login.css">
+        <title>EMS</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <!--Start navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="/home"><img src="../images/logo.png" width="70px"
+                    height="80x"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/our-services">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/aboutUs">About EMS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/scheduleMeeting">Schedule a Meeting</a>
+                    </li>
+                </ul>
+                <div class="getStarted">
+                    <a href="/home/login">Login</a>
+                    <a href="/home/signup" style="border: none;margin-right: 0;"><button class="btn my-2 my-sm-0" >Get Started</button></a>
+                </div>
+                
+            </div>
+
+        </nav>
+        <!--End navbar-->
+
+        <!--login Section-->
+        <!-- <div class="container"> -->
+        <div class="green-section text-center white-text">
+            <div class="row">
+                <div class="col-12 text-center
+                    margin-top-xl">
+                    <h2 class="white-text">Login to your EMS account</h2>
+                    <p>Please enter your user information: </p>
+                    
+                </div>
+                <div class=" cont">
+                    <form action="/login" method="POST">
+                    <div class="form-group">
+                        <% if(authError){ %> 
+                            <p class="alert alert-danger"><%= authError %> </p>
+                        <% } %>
+                        <div class="input-group">
+                           
+                            <input autocomplete="off" placeholder="ID, or email"
+                                class="form-control" type="text" 
+                                name="email" id="user_login">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            
+                            <input autocomplete="off" placeholder="Password"
+                                class="form-control" type="password"
+                                name="password" id="user_password">
+                        </div>
+                    </div>
+                    <div class="form-group login-submit">
+                        <button class="btn btn-primary-white pull-left margin-right-m" data-dismiss="modal" value="" id="loginButton" type="submit" >Login</button>
+                    </form>
+                        <div class="remember pull-left">
+                        <div class="am-checkbox pull-left">
+                        <input id="remember" type="checkbox" value="1" name="user[remember_me]" data-parsley-multiple="userremember_me">
+                        <label for="remember"></label>
+                        </div>
+                        <label for="remember" style="line-height: 2.5; font-size: 17px;">Remember Me</label>
+                        </div>
+                        <a class="btn forgot-pass no-padding-right pull-right" href="">Forgot Password?</a>
+                        </div>
+                         
+                </div>
+                
+
+            </div>
+        </div>
+    <!-- </div> -->
+    <script>
+        // $(document).ready(function(){
+        //     $('#loginButton').click(function(){
+        //         let x = $('#user_login').val();
+        //         $('#loginButton').val($(x).val())
+        //     })
+        // })
+        // function inputValue(){
+        //     let x = jQuery('#user_login').val()
+        //     console.log(x);
+        //     // jQuery('#loginButton').val(jQuery(x).val())
+        // }
+    </script>
+    </body>
+
+</html>

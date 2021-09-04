@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EMS</title>
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet">
+        <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/cs-skin-elastic.css">
+        <link rel="stylesheet"
+            href="../css/lib/datatable/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../css/all.min.css">
+        <link rel="stylesheet" href="../css/fontawesome.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff!important;
+        }
+        
+        .traffic-chart {
+            min-height: 335px;
+        }
+        
+        #flotPie1 {
+            height: 150px;
+        }
+        
+        #flotPie1 td {
+            padding: 3px;
+        }
+        
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        #flotLine5 {
+            height: 105px;
+        }
+        
+        #flotBarChart {
+            height: 150px;
+        }
+        
+        #cellPaiChart {
+            height: 160px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <!-- Left Panel -->
+        <aside id="left-panel" class="left-panel">
+            <nav class="navbar navbar-expand-sm navbar-default">
+                <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/HR"><i class="menu-icon fa fa-laptop"></i>Dashboard
+                            </a>
+                        </li>
+                        <!-- /.menu-title -->
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fa
+                                    fa-users"></i>Attendance</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><a href="/HR/Attendance_Log_HR">Attendance Log</a></li>
+                                <li><a href="/HR/My_Attendance_HR">My Attendance</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fa
+                                    fa-tasks"></i>To Do</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><a href="/HR/All_Task_HR">All Tasks</a></li>
+                                <li><a href="/HR/My_Task_HR">My Tasks</a></li>
+                                <li><a href="/HR/Add_Task_HR">Add Task</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fas
+                                    fa-sign-out-alt"></i>Leave</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><a href="/HR/All_Requests_leave_HR">All
+                                        Requests</a></li>
+                                <li><a href="/HR/My_Request_Leave_HR">My
+                                        Requests</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon
+                                    far fa-building"></i>Organization</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li>
+                                    <a href="/HR/emp" >My
+                                        Employees</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </aside>
+        <!-- /#left-panel -->
+
+        <!-- /#left-panel -->
+        <!-- Right Panel -->
+        <div id="right-panel" class="right-panel">
+            <!-- Header-->
+            <header id="header" class="header">
+                <div class="top-left">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="./"><img
+                                src="../images/logo1.jpg" alt="Logo"></a>
+                        <a id="menuToggle" class="menutoggle"><i class="fa
+                                fa-bars"></i></a>
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="header-menu">
+                        <div class="header-left" style="padding-top: 10px;">
+                            <h5 style="font-weight: bold;"><%=nameHR%></h5>
+                            <p><%=idHR%></p>
+                        </div>
+
+                        <div class="user-area dropdown float-right">
+                            <a href="#" class="dropdown-toggle active"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img class="user-avatar rounded-circle"
+                                    src="../images/admin.jpg" alt="User Avatar">
+                            </a>
+
+                            <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="/My_Profile"><i class="fa fa-
+                                        user"></i>My Profile</a>
+                                        <form action="/logout" method="POST">
+                                            <button type="submit" style="border: none;background: none;font-size: 15px;padding-left: 12px;">
+                                                <i class="fa fa-power -off"></i>Logout
+                                            </button>
+                                        </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            <!-- /#header -->
+            <!-- breadcrumbs -->
+            <div class="breadcrumbs">
+                <div class="breadcrumbs-inner">
+                    <div class="row m-0">
+                        <div class="col-sm-4">
+                            <div class="page-header float-left">
+                                <div class="page-title">
+                                    <h1>All Task</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="page-header float-right">
+                                <div class="page-title">
+                                    <ol class="breadcrumb text-right">
+                                        <li><a href="/HR">Dashboard</a></li>
+                                        <li class="active">All Task</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#breadcrumbs -->
+            <!-- Content -->
+            <div class="content">
+                <div class="animated fadeIn">
+                    <!-- Orders -->
+                    <div class="orders">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="box-title">All Tasks From EMP
+                                        </h4>
+                                    </div>
+                                    <div class="card-body--">
+                                        <div class="table-stats order-table
+                                            ov-h">
+                                            <table class="table">
+                                                <thead style="font-size: 17px;">
+                                                    <tr>
+                                                        <th class="serial">#</th>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Task Title</th>
+                                                        <th>Time Submit</th>
+                                                        <th>File</th>
+                                                        <th>Feedback</th>
+                                                        <th>admissions</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% let count =1 %> 
+                                                    <% for(let tas of task){ %>
+                                                        <% if(idHR == tas.hrId) {%> 
+                                                        <% if(tas.sendFile != "null") {%>
+                                                            <% if(tas.Status === "null") {%> 
+                                                                <% if(tas.typeEMP != "hr") {%> 
+                                                            <form action="/HR/All_Task_HR" method="POST"> 
+                                                    <tr>
+                                                        <td class="serial"><%= count++ %>.</td>
+                                                        <td><%= tas.empId %> </td>
+                                                        <td><%= tas.name %> </td>
+                                                        <td><%= tas.taskTitle %>  </td>
+                                                        <td><%= tas.timeSubmit %> | <%= tas.dateSubmit %>  </td>
+                                                        <td><% let splitTask = (tas.sendFile).split('----')%> 
+                                                        <a href="../files/<%=tas.sendFile%>" download><i class="fas fa-download" style="margin-right: 8px;"></i><%=splitTask[1]%></a></td>
+                                                        <td> <textarea class="form-control" name="feedBackHR"></textarea> </td>
+                                                        <td><select name="statusHR" style="padding: 20px;border: none;background-color: inherit;font-size: 20px;">
+                                                            <option value="null">------</option>
+                                                            <option
+                                                                value="Approve">Approve</option>
+                                                            <option
+                                                                value="Reject">Reject</option>
+                                                        </select></td>
+                                                        <td>
+                                                            
+                                                            <span class="upload-btn-wrapper">
+                                                                <button type="submit" name="empUploadBtn" value="<%= tas._id%>"
+                                                                    class="Task-button"
+                                                                    id="send-task">Send</button>
+                                                            </span>
+                                                        </form>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %> 
+                                                    <% } %> 
+                                                    <% } %> 
+                                                    <% } %> 
+                                                    <% } %>                                                        
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-stats -->
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orders">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="box-title">Task Status</h4>
+                                            <button type="submit" name="deleteTableStatu1s"
+                                            data-toggle="modal" data-target="#deleteTableTask" class="button-optinal btn btnDelete " value="true">Delete Table</button>
+                                        <button id="print" class="button-optinal btn " onclick="myApp.printTable()">Print Table</button>
+
+                                    </div>
+                                    <div class="card-body--">
+                                        <div class="table-stats order-table
+                                            ov-h">
+                                            <table class="table" id="bootstrap-data-table">
+                                                <thead style="font-size: 17px;">
+                                                    <tr>
+                                                        <th class="serial">#</th>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Task Title</th>
+                                                        <th>File</th>
+                                                        <th>Status</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% let counter =1 %> 
+                                                    <% for(let tas of task){ %>
+                                                            <% if(tas.Status != "null") {%> 
+                                                                <% if(tas.typeEMP != 'hr') {%> 
+                                                            <form action="/HR/All_Task_HR" method="POST"> 
+                                                        <tr>
+                                                        <td class="serial"><%= counter++ %>.</td>
+                                                        <td><%= tas.empId %> </td>
+                                                        <td><%= tas.name %> </td>
+                                                        <td><%= tas.taskTitle %>  </td>
+                                                        <td><% let splitTask = (tas.sendFile).split('----')%> 
+                                                        <a href="../files/<%=tas.sendFile%>" download><i class="fas fa-download" style="margin-right: 8px;"></i><%=splitTask[1]%></a></td>
+                                                        <td>
+                                                            <% if(tas.Status === "Approve") {%>
+                                                            <span class="badge badge-complete"> Approved </span>
+                                                            <% } %>  
+                                                            
+                                                            <% if(tas.Status === "Reject") {%>
+                                                                <span class="badge badge-pending"> Rejected </span>
+                                                                <% } %>  
+                                                        </td>
+                                                        </tr>
+                                                        </form>
+                                                        <% } %> 
+                                                    <% } %> 
+                                                    <% } %>                                                        
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-stats -->
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .animated -->
+                </div>
+                <!-- /.content -->
+            </div>
+            <div class="clearfix"></div>
+            <div class="interview-Event">
+                <div class="modal fade" id="deleteTableTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content"> 
+                            <div class="modal-header"> 
+                                <h5 class="modal-title" id="exampleModalLabel"> Delete Interveiws</h5> 
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+                                    <span aria-hidden="true">&times;</span> 
+                                </button> 
+                            </div> 
+                            <form action="/HR/All_Task_HR" method="POST"> 
+                                <div class="modal-body"> 
+                                    <h5 style="font-weight: bold;">Are you sure to delete this Table..?</h5> 
+                                    </div><div class="modal-footer"> 
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" name="cancelDeleteBtn">Cancel</button> 
+                                        <button type="submit" class="btn btn-primary" id="sureDeleteBtnInterview"  name="deleteTableStatus" value="true">Sure</button>
+                                </div>
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+        </div>
+
+        <!-- /#right-panel -->
+        <!-- Scripts -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+        <script src="../js/dashboard.js"></script>
+        <script src="../js/main.js"></script>
+        <script>
+                var myApp = new function () {
+                this.printTable = function () {
+                var tab = document.getElementById('bootstrap-data-table');
+
+                var style = "<style>";
+                    style = style + "table {width: 100%;font: 17px Calibri;}";
+                    style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+                    style = style + "padding: 2px 3px;text-align: center;}";
+                    style = style + "</style>";
+
+                var win = window.open();
+                win.document.write(style);          //  add the style.
+                win.document.write(tab.outerHTML);
+                win.document.close();
+                win.print();
+            }
+        }
+        </script>
+    </body>
+
+</html>
